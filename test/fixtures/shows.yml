@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  station: MyString
+  'on': 2017-03-21
+  starts: MyString
+  title: MyString
+  desc: MyString
+  finishes: MyString
+
+two:
+  station: MyString
+  'on': 2017-03-21
+  starts: MyString
+  title: MyString
+  desc: MyString
+  finishes: MyString
