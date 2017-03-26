@@ -8,12 +8,14 @@ export default class Programme extends React.Component {
       <div className="programme">
         <ul>
           <li>
-            {this.props.programme.on}
-
+            <em>{this.props.programme.on_on}</em>
+            {' '}
             {this.props.programme.starts}-{this.props.programme.finishes}
+            {' '}
+            <b>{this.props.programme.station}</b>
             </li>
           <li>{this.props.programme.title}</li>
-          <li>{this.props.programme.desc}</li>
+          <li><small>{this.props.programme.desc}</small></li>
         </ul>
       </div>
     );

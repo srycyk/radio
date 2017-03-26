@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 20170321112005) do
 
   create_table "shows", force: :cascade do |t|
     t.string "station"
-    t.date "on"
+    t.date "on_on"
     t.string "starts"
     t.string "title"
     t.string "desc"

@@ -2,9 +2,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Fetch from 'react-fetch'
-
 import Programme from 'packs/programme.jsx'
+
+import ShowCase from 'packs/show_case.js'
 
 export default class Programmes extends React.Component {
   constructor() {
@@ -14,19 +14,7 @@ export default class Programmes extends React.Component {
       shows: []
     }
 
-    this.fetchShows()
-  }
-
-  fetchShows(params={}) {
-    let path = '/shows/index'
-
-    fetch(path, params)
-      .then(resp => resp.json())
-      .then(json => this.setShowState(json))
-  }
-
-  setShowState(shows) {
-    this.setState({shows: shows})
+    new ShowCase(this.setShows().bind(this)).get()
   }
 
   setShows() {
