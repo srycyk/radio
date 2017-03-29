@@ -1,15 +1,15 @@
 
 class ShowsController < ApplicationController
+  #before_action { logger.warn(params.inspect)
+
   def index
     shows = QuizShow.new *params.values_at(:station, :date)
-    shows = QuizShow.new 'radio4extra', Date.tomorrow
-    shows = QuizShow.new %w(radio4 radio4extra), :now
 
     render json: shows.().to_json
   end
 
   def info
-    render json: QuizShow.()
+    render json: QuizShow.by_station.to_a
   end
 
   def create

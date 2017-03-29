@@ -8,9 +8,9 @@ export default class Programme extends React.Component {
       <div className="programme">
         <ul>
           <li>
-            <em>{this.props.programme.on_on}</em>
-            {' '}
             {this.props.programme.starts}-{this.props.programme.finishes}
+            {' '}
+            <em>{this.props.programme.on_on}</em>
             {' '}
             <b>{this.props.programme.station}</b>
             </li>

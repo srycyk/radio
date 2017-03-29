@@ -20,7 +20,9 @@ class Show < ApplicationRecord
 
   class << self
     def insert(atts_list)
-      atts_list.map {|atts| add atts }
+      transaction do
+        atts_list.map {|atts| add atts }
+      end
     end
 
     def add(atts)
@@ -41,6 +43,10 @@ class Show < ApplicationRecord
 
     def purge(date=nil)
       before_date(date).delete_all
+    end
+
+    def rm(date, stations=STATIONS)
+      on_date(date).stations(stations).delete_all
     end
 
     private

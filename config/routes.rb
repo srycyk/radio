@@ -1,7 +1,7 @@
 
 Rails.application.routes.draw do
-  get 'shows/index'
-  get 'shows/info'
+  match 'shows/index', via: %i(get post)
+  match 'shows/info', via: %i(get post)
   post 'shows/create'
 
   #resources :shows, only: %i(index show create)

@@ -2,10 +2,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import ShowWindow from 'packs/show_window.jsx'
+import Programmes from 'packs/programmes.jsx'
 
 function Application() {
-  return <ShowWindow />
+  return <Programmes />
 }
 
 document.addEventListener('DOMContentLoaded', () => {

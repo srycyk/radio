@@ -3,7 +3,7 @@ class QuizShow < Struct.new(:station, :date, :hhmm)
   def initialize(*)
     super
 
-    if date == :now
+    if date.blank? or date == 'now'
       self.hhmm = Time.now.strftime '%H:%M'
 
       self.date = Date.today
@@ -15,14 +15,15 @@ class QuizShow < Struct.new(:station, :date, :hhmm)
   end
 
   def call
-    Show.stations(station).on_date(date).from_time(hhmm).in_order
+    #Show.stations(station).on_date(date).from_time(hhmm).in_order
+    Show.stations(station).on_date(date).in_order
   end
 
   private
 
   class << self
     def call
-      sql = %<select station, on_on from shows group by station, on_on>
+      sql = %{select station, on_on from shows group by station, on_on order by on_on}
 
       whats_on = { 'stations' => Show::STATIONS, 'dates' => [] }
 
@@ -37,8 +38,18 @@ class QuizShow < Struct.new(:station, :date, :hhmm)
       end
     end
 
-    def by_station
-      call.slice *Show::STATIONS
+    def by_station(for_upcoming=true)
+      today = Date.today.to_s
+
+      station_dates = call.slice *Show::STATIONS
+
+      if for_upcoming
+        station_dates.each do |station, dates|
+          station_dates[station] = dates.select {|date| date >= today }
+        end
+      end
+
+      station_dates
     end
 
     private
