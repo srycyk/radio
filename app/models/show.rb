@@ -28,9 +28,11 @@ class Show < ApplicationRecord
     def add(atts)
       #key_atts = atts.permit :station, :on_on, :starts
 
-      key_atts = { station: atts[:station],
-                   on_on: atts[:on_on],
-                   starts: atts[:starts] }
+      #key_atts = { station: atts[:station],
+      #             on_on: atts[:on_on],
+      #             starts: atts[:starts] }
+
+      key_atts = atts.slice :station, :on_on, :starts
 
       find_or_create_by key_atts do |show|
         show.title = atts[:title]

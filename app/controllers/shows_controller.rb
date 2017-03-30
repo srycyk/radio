@@ -1,11 +1,11 @@
 
 class ShowsController < ApplicationController
-  #before_action { logger.warn(params.inspect)
-
   def index
-    shows = QuizShow.new *params.values_at(:station, :date)
+    station, date = params.values_at(:station, :date)
 
-    render json: shows.().to_json
+    shows = FetchShow.new(station, date).()
+
+    render json: shows.to_json
   end
 
   def info
@@ -16,8 +16,11 @@ class ShowsController < ApplicationController
     json =  params[:_json]
 
     shows = Show.insert json
-#byebug
 
     render plain: "#{shows.size} shows"
   end
+
+  private
+
 end
+

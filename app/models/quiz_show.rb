@@ -23,11 +23,9 @@ class QuizShow < Struct.new(:station, :date, :hhmm)
 
   class << self
     def call
-      sql = %{select station, on_on from shows group by station, on_on order by on_on}
-
       whats_on = { 'stations' => Show::STATIONS, 'dates' => [] }
 
-      query(sql).reduce(whats_on) do |acc, entry|
+      query(info_sql).reduce(whats_on) do |acc, entry|
         date = entry['on_on'].to_s
 
         acc['dates'] << date unless acc['dates'].include? date
@@ -53,6 +51,10 @@ class QuizShow < Struct.new(:station, :date, :hhmm)
     end
 
     private
+
+    def info_sql
+      "select station, on_on from shows group by station, on_on order by on_on"
+    end
 
     def query(sql)
       ActiveRecord::Base.connection.execute(sql)

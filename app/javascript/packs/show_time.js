@@ -45,6 +45,18 @@ const ShowTime = {
 
   displayDate(date) {
     return this.isForToday(date) ? 'upcoming' : this.formatDate(date)
+  },
+
+  currentDateTime() {
+    return this.currentDate() + ' ' + this.currentTime()
+  },
+
+  currentDate() {
+    return this.now().toDateString()
+  },
+
+  currentTime() {
+    return this.now().toLocaleTimeString().substr(0, 5)
   }
 }
 

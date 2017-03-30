@@ -9,10 +9,6 @@ export default class ShowCase {
   }
 
   get(station, date) {
-    //date = date || 'now'
-
-    //station = station || 'all'
-
     if (! this[station])
       this[station] = {}
 
