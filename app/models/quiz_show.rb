@@ -3,7 +3,8 @@ class QuizShow < Struct.new(:station, :date, :hhmm)
   def initialize(*)
     super
 
-    if date.blank? or date == 'now'
+=begin
+    if date.blank? or date == 'today'
       self.hhmm = Time.now.strftime '%H:%M'
 
       self.date = Date.today
@@ -12,6 +13,7 @@ class QuizShow < Struct.new(:station, :date, :hhmm)
 
       self.date ||= Date.today
     end
+=end
   end
 
   def call

@@ -2,10 +2,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import ShowFetch from 'packs/show_fetch.js'
-import ShowCase from 'packs/show_case.js'
+import ShowFetch from 'packs/utils/show_fetch.js'
+import ShowCase from 'packs/utils/show_case.js'
 
-import ShowLinks from 'packs/components/show_links.jsx'
+import ShowLinksByStation from 'packs/components/show_links_by_station.jsx'
 import Shows from 'packs/components/shows.jsx'
 
 export default class ShowWindow extends React.Component {
@@ -14,15 +14,16 @@ export default class ShowWindow extends React.Component {
 
     this.showCase = new ShowCase(this.setStateAttribute('shows'))
 
-    this.state = { station: 'radio4', date: 'now', shows: [], available: [] }
+    this.state = { station: 'radio4', date: 'today',
+                   shows: [], station_info: [] }
 
-    this.getAvailable()
+    this.getStations()
 
     this.getShows()
   }
 
-  getAvailable() {
-    new ShowFetch(this.setStateAttribute('available'), 'info').get()
+  getStations() {
+    new ShowFetch(this.setStateAttribute('station_info'), 'station_info').get()
   }
 
   getShows() {
@@ -34,20 +35,19 @@ export default class ShowWindow extends React.Component {
   }
 
   setStationAndDate(station, date) {
-    station = station || this.state.station
-
     this.setState({ station: station, date: date }, () => this.getShows())
   }
 
   render() {
     return (
       <div className="show-window">
-        <ShowLinks onClick={this.setStationAndDate.bind(this)}
-                   available={this.state.available} />
+        <ShowLinksByStation onClick={this.setStationAndDate.bind(this)}
+                            station_info={this.state.station_info} />
 
         <Shows station={this.state.station}
                date={this.state.date}
                shows={this.state.shows}
+               station_info={this.state.station_info}
                onClick={this.setStationAndDate.bind(this)} />
       </div>
     );

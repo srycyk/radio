@@ -11,18 +11,22 @@ const Show = ({show, index}) => {
     return { padding: '0px 3px', margin: '0px', display: 'inline' }
   }
 
+  function title(show) {
+    return show.on_on + ' ' + show.station
+  }
+
   return (
     <ul className="show" key={index} style={ulStyle()}>
       <li style={liStyle()}>
-        <strong>
+        <em>
           {`${show.starts}-${show.finishes}`}
-        </strong>
+        </em>
       </li>
 
       <li style={liStyle()}>
-        <em>
+        <a href={show.info_url} target='_blank' title={title(show)}>
           {show.title}
-        </em>
+        </a>
       </li>
 
       <li style={liStyle()}>

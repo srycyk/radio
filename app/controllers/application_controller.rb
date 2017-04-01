@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   def index
     info = QuizShow.()
 
-    render inline: "#{info['dates']}", layout: true
+    render inline: "#{info}", layout: true
+    #render inline: "#{info['dates']}", layout: true
   end
 end

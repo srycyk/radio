@@ -2,9 +2,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Show from 'packs/components/show.jsx'
+import ShowTime from 'packs/utils/show_time.js'
 
-import ShowTime from 'packs/show_time.js'
+import Show from 'packs/components/show.jsx'
+import ShowLinksByDate from 'packs/components/show_links_by_date.jsx'
 
 export default class Shows extends React.Component {
   shows() {
@@ -31,35 +32,15 @@ export default class Shows extends React.Component {
     }
   }
 
-  linkTo(date, text) {
-    return (<a href='#' onClick={this.bubbleless(this.props.station, date)}
-               title={`All programmes on ${ShowTime.formatDate(date)}`}>
-             {text}
-            </a>)
-  }
-
-  bubbleless(station, date) {
-    return e => { e.preventDefault() ; this.props.onClick(station, date) }
-  }
-
-  fire(func, context) {
-    return ( () => func.bind(context)() )()
-  }
-
   render() {
     return (
       <div className="shows">
-        <h4>
-          {this.props.station}
-          {' '}
-          <em>
-            {ShowTime.displayDate(this.props.date)}
-          </em>
-          {' '}
-          {this.linkTo(this.fire(ShowTime.today, ShowTime), 'Today')}
-          {' '}
-          {this.linkTo(this.fire(ShowTime.tomorrow, ShowTime), 'Tomorrow')}
-        </h4>
+        <div>
+          <ShowLinksByDate onClick={this.props.onClick}
+                           station={this.props.station}
+                           date={this.props.date}
+                           station_info={this.props.station_info} />
+        </div>
 
         {this.shows()}
       </div>

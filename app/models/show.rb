@@ -1,6 +1,12 @@
 
 class Show < ApplicationRecord
-  STATIONS = %w(radio3 radio4 radio4extra 5live worldserviceradio)
+  STATION_NAMES = { 'radio3' => 'Radio 3',
+                    'radio4' => 'Radio 4',
+                    'radio4extra' => '4 Extra',
+                    '5live' => '5 Live',
+                    'worldserviceradio' => 'World Service' }
+
+  STATIONS = STATION_NAMES.keys
 
   scope :on_date, -> (date=Date.today) { where on_on: date }
 
@@ -26,12 +32,6 @@ class Show < ApplicationRecord
     end
 
     def add(atts)
-      #key_atts = atts.permit :station, :on_on, :starts
-
-      #key_atts = { station: atts[:station],
-      #             on_on: atts[:on_on],
-      #             starts: atts[:starts] }
-
       key_atts = atts.slice :station, :on_on, :starts
 
       find_or_create_by key_atts do |show|
@@ -40,6 +40,8 @@ class Show < ApplicationRecord
         show.desc = atts[:desc]
 
         show.finishes = atts[:finishes]
+
+        show.info_url = atts[:info_url]
       end
     end
 

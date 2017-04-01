@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20170321112005) do
     t.string "title"
     t.string "desc"
     t.string "finishes"
+    t.string "info_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

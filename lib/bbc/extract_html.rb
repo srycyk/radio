@@ -25,8 +25,6 @@ module BBC
     attr_accessor :show_list
 
     def initialize
-      @on_show = false
-
       @current_date = nil
 
       self.show_list = []
@@ -36,28 +34,29 @@ module BBC
       atts = as_hash attributes
 #puts "#{name} #{atts.inspect}"
 
-      #if @on_show
-        if name == 'h3' and atts['property'] == 'startDate'
-          @starts = atts['content']
+      if name == 'h3' and atts['property'] == 'startDate'
+        @starts = atts['content']
 
-          @ends = nil
-        end
-      #else
-        if name == 'meta' and atts['property'] == 'endDate'
-          @ends = atts['content'] unless @ends
+        @ends = nil
+      end
 
-          @title = ''
-        end
+      if name == 'meta' and atts['property'] == 'endDate'
+        @ends = atts['content'] unless @ends
 
-        if name == 'span' and atts['property'] == 'name'
-          @in_name = true
-        end
+        @title = ''
+      end
 
-        if name == 'span' and atts['property'] == 'description'
-          @in_desc = true
-          @on_show = true
-        end
-      #end
+      if name == 'div' and atts['typeof'] == 'RadioEpisode'
+        @info_url = atts['resource']
+      end
+
+      if name == 'span' and atts['property'] == 'name'
+        @in_name = true
+      end
+
+      if name == 'span' and atts['property'] == 'description'
+        @in_desc = true
+      end
     end
 
     def characters(content)
@@ -80,11 +79,9 @@ module BBC
 
         end_hhmm = hhmm @ends
 
-        self.show_list << [ start_hhmm, @title, @desc, end_hhmm ]
+        self.show_list << [ start_hhmm, @title, @desc, end_hhmm, @info_url ]
 
 #puts "#{@starts} to #{@ends} #@title <#@desc>"
-
-        @on_show = false
       end
     end
 

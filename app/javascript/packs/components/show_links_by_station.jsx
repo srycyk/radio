@@ -2,22 +2,23 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import ShowTime from 'packs/show_time.js'
+import ShowTime from 'packs/utils/show_time.js'
 
-const ShowLinks = ({onClick, available}) => {
+const ShowLinksByStation = ({onClick, station_info}) => {
   const bubbleless = station => e => { e.preventDefault() ; onClick(station) }
 
-  function link_to(station, key) {
+  function linkTo(station, title, key) {
+    let long_title = `Programmes for rest of day on ${title}`
+
     return (<li key={key} style={{ padding: '10px', display: 'inline' }}>
-              <a href='#' onClick={bubbleless(station)}
-                          title={`Programmes for rest of day on ${station}`}>
-                {station}
+              <a href='#' onClick={bubbleless(station)} title={long_title}>
+                {title}
               </a>
             </li>)
   }
 
   return (
-    <div className="show-links">
+    <div className="show-links-station">
       <ul style={{ listStyle: 'none', padding: '0px 7px' }}>
         <li key={-1} style={{ padding: '0px', display: 'inline' }}>
           <em>
@@ -27,10 +28,10 @@ const ShowLinks = ({onClick, available}) => {
           </em>
         </li>
 
-        {available.map( ([station, dates], index) => link_to(station, index) )}
+        {station_info.map( ([name, title], index) => linkTo(name, title, index) )}
       </ul>
     </div>
   )
 }
 
-export default ShowLinks
+export default ShowLinksByStation

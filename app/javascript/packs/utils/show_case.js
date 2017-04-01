@@ -1,7 +1,7 @@
 
-import ShowFetch from 'packs/show_fetch.js'
+import ShowFetch from 'packs/utils/show_fetch.js'
 
-import ShowTime from 'packs/show_time.js'
+import ShowTime from 'packs/utils/show_time.js'
 
 export default class ShowCase {
   constructor(onSuccess) {

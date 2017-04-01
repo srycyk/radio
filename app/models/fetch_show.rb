@@ -7,6 +7,8 @@ class FetchShow < Struct.new(:station, :date)
   def initialize(*)
     super
 
+    self.date = Date.today if date.blank? or date == 'today'
+
     self.quiz_show = QuizShow.new(station, date)
   end
 

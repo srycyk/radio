@@ -4,12 +4,11 @@ require 'date'
 #require 'bbc/struct_utils'
 
 module BBC
-  class Show < Struct.new(:station, :on_on, :starts, :title, :desc, :finishes)
+  class Show < Struct.new(:station, :on_on, :starts,
+                          :title, :desc, :finishes, :info_url)
     include Comparable
 
     include FormatDate
-
-    #include StructUtils
 
     def to_s
       "#{on_on} #{starts} - #{station} #{finishes} #{EOL} #{title}#{EOL}  #{desc}#{EOL}#{EOL}"
@@ -18,6 +17,7 @@ module BBC
     def to_atts
       to_h
     end
+
 =begin
     def to_atts
       #{ on_at: to_time(date, time),
@@ -65,13 +65,6 @@ module BBC
         extractor station, date, fetch_class: BBC::FetchLynx,
                                  extract_class: BBC::ExtractLynx
       end
-=begin
-      def extractor
-        data = BBC::Fetch.new(station, date).()
-
-        BBC::Extract.new(data).().map {|details| new station, date, *details }
-      end
-=end
 
       def ahead(station, days=7)
         starts = Date.today

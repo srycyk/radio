@@ -7,6 +7,7 @@ class CreateShows < ActiveRecord::Migration[5.1]
       t.string :title
       t.string :desc
       t.string :finishes
+      t.string :info_url
 
       t.timestamps
     end

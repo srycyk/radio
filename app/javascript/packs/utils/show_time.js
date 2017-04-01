@@ -25,7 +25,7 @@ const ShowTime = {
   },
 
   tomorrow() {
-    return this.yyyymmdd(new Date(this.now().getTime() + 24 * 60 * 60 * 1000))
+    return this.yyyymmdd(this.timeShift(1))
   },
 
   yyyymmdd(date) {
@@ -57,6 +57,28 @@ const ShowTime = {
 
   currentTime() {
     return this.now().toLocaleTimeString().substr(0, 5)
+  },
+
+  dateRange(ceiling=8, floor=-1) {
+    let dates = []
+
+    for (let i = floor; i < ceiling; i++)
+      dates.push(this.yyyymmdd(this.timeShift(i)))
+
+    return dates
+  },
+
+  timeShift(numDays) {
+    return new Date(this.now().getTime() + this.milliDay(numDays))
+  },
+
+  milliDay(numDays) {
+    return numDays * 24 * 60 * 60 * 1000
+  },
+
+  linkDate(date) {
+    return date === this.today() ? 'Today' :
+           date === this.tomorrow() ? 'Tomorrow' : date
   }
 }
 
