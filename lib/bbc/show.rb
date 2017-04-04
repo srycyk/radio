@@ -18,18 +18,6 @@ module BBC
       to_h
     end
 
-=begin
-    def to_atts
-      #{ on_at: to_time(date, time),
-      { date: date,
-        time: time,
-        station: station,
-        title: title,
-        description: desc,
-        finishes: finishes }
-    end
-=end
-
     def <=>(other)
       %i(on_on starts station).each do |field_name|
         this, that = self[field_name], other[field_name]
@@ -49,7 +37,11 @@ module BBC
 
         puts "  #{date} #{station}"
 
-        extractor station, date #, fetch_class: BBC::FetchHtmlNoSave
+        if Dir.exists? 'tmp/in'
+          extractor station, date
+        else
+          extractor station, date, fetch_class: BBC::FetchHtmlNoSave
+        end
       end
 
       def extractor(station, date, fetch_class: BBC::FetchHtml,

@@ -8,7 +8,8 @@ require 'json'
 require 'bbc'
 require 'bbc/send_json'
 
-  URL = ENV['SHOW_URL'] || "http://localhost:3000/shows/create"
+  host = ENV['SHOW_HOST'] || "localhost:3000"
+  url = "http://%s/shows/create" % host
 
   date = ARGV.shift || Date.today.to_s
 
@@ -19,7 +20,7 @@ require 'bbc/send_json'
 
 #puts json.inspect
 
-    data = BBC::SendJson.new(URL, json).()
+    data = BBC::SendJson.new(url, json).()
 
     puts data
   end

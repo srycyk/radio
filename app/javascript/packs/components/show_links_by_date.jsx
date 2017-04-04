@@ -10,17 +10,13 @@ const ShowLinksByDate = ({onClick, station, date, station_info}) => {
   }
 
   function stationTitle() {
-    for (let i =0; i < station_info.length; i++) {
+    for (let i = 0; i < station_info.length; i++) {
       let [name, title] = station_info[i]
 
       if (name === station)
         return title
     }
     return name
-  }
-
-  function fire(func, context) {
-    return ( () => func.bind(context)() )()
   }
 
   function linkTo(date) {
@@ -34,9 +30,7 @@ const ShowLinksByDate = ({onClick, station, date, station_info}) => {
   function li(contents, key) {
     return (
       <li key={key} style={{ padding: '3px', display: 'inline' }}>
-        <small>
-          {contents}
-        </small>
+        <small> {contents} </small>
       </li>
     )
   }
@@ -50,7 +44,7 @@ const ShowLinksByDate = ({onClick, station, date, station_info}) => {
           <em><small> {ShowTime.displayDate(date)} </small></em>
         </li>
 
-        {ShowTime.dateRange().map( ( date, index) => li(linkTo(date), index) )}
+        {ShowTime.dateRange().map( (date, index) => li(linkTo(date), index) )}
       </ul>
     </span>
   )

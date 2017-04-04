@@ -6,7 +6,7 @@ require 'net/http'
 
 module BBC
   class FetchHtmlNoSave < FetchHtml
-    def exists?
+    def exists?(*)
       false
     end
 

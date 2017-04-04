@@ -7,14 +7,22 @@ import ShowTime from 'packs/utils/show_time.js'
 const ShowLinksByStation = ({onClick, station_info}) => {
   const bubbleless = station => e => { e.preventDefault() ; onClick(station) }
 
-  function linkTo(station, title, key) {
-    let long_title = `Programmes for rest of day on ${title}`
-
+  function li(contents, key) {
     return (<li key={key} style={{ padding: '10px', display: 'inline' }}>
-              <a href='#' onClick={bubbleless(station)} title={long_title}>
-                {title}
-              </a>
+              {contents}
             </li>)
+  }
+
+  function linkTo(station, title) {
+    let link_title = `Programmes for rest of day on ${title}`
+
+    return (<a href='#' onClick={bubbleless(station)} title={link_title}>
+              {title}
+            </a>)
+  }
+
+  function link(station, title, index) {
+    return li(linkTo(station, title), index)
   }
 
   return (
@@ -23,12 +31,12 @@ const ShowLinksByStation = ({onClick, station_info}) => {
         <li key={-1} style={{ padding: '0px', display: 'inline' }}>
           <em>
             <small>
-              {( () => ShowTime.currentDateTime() )()}
+              {ShowTime.currentDateTime()}
             </small>
           </em>
         </li>
 
-        {station_info.map( ([name, title], index) => linkTo(name, title, index) )}
+        {station_info.map( ([name, title], index) => link(name, title, index) )}
       </ul>
     </div>
   )

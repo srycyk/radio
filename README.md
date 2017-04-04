@@ -1,24 +1,20 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is an experimental app that shows the timings of some of
+the BBC's radio programmes.
 
-Things you may want to cover:
+I was originally going to use it to get to know ActionCable,
+but it turned out that React was a better fit for the
+functionality, so I changed tack and used it to practise
+React with instead.
 
-* Ruby version
+It it in Rails 5.1, and uses Webpack to serve up the JS.
+Rails (with SQLite) supplies the JSON data, React handles
+the front-end and caches the programme listings.
 
-* System dependencies
+The data extraction is in Ruby, and starts with the
+module, *lib/bbc.rb*.
 
-* Configuration
+I coded it up as I went along, hence it's a bit untidy and
+there're no tests. Also, it contains redundant code,
+just in case I do add some ActionCable stuff.
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

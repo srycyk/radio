@@ -12,26 +12,27 @@ export default class ShowWindow extends React.Component {
   constructor() {
     super();
 
-    this.showCase = new ShowCase(this.setStateAttribute('shows'))
-
     this.state = { station: 'radio4', date: 'today',
-                   shows: [], station_info: [] }
+                   station_info: [], shows: [] }
 
-    this.getStations()
+    this.showCase = new ShowCase(this.setStateAttributeFunc('shows'))
+
+    this.getStationInfo()
 
     this.getShows()
   }
 
-  getStations() {
-    new ShowFetch(this.setStateAttribute('station_info'), 'station_info').get()
+  setStateAttributeFunc(name) {
+    return data => this.setState({[name]: data})
+  }
+
+  getStationInfo() {
+    new ShowFetch(this.setStateAttributeFunc('station_info'), 'station_info')
+        .get()
   }
 
   getShows() {
     this.showCase.get(this.state.station, this.state.date)
-  }
-
-  setStateAttribute(name) {
-    return data => this.setState({[name]: data})
   }
 
   setStationAndDate(station, date) {
@@ -41,8 +42,8 @@ export default class ShowWindow extends React.Component {
   render() {
     return (
       <div className="show-window">
-        <ShowLinksByStation onClick={this.setStationAndDate.bind(this)}
-                            station_info={this.state.station_info} />
+        <ShowLinksByStation station_info={this.state.station_info}
+                            onClick={this.setStationAndDate.bind(this)} />
 
         <Shows station={this.state.station}
                date={this.state.date}
