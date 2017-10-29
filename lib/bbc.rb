@@ -10,5 +10,7 @@ require 'bbc/format_date'
 require 'bbc/show'
 
 module BBC
-  STATIONS = %w(radio3 radio4 radio4extra 5live worldserviceradio)
+  STATIONS = %w(radio3 radio4 radio4extra 5live worldserviceradio 6music)
+
+  EOL = "\n"
 end

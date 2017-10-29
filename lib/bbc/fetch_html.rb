@@ -11,7 +11,11 @@ module BBC
     end
 
     def get
-      Net::HTTP::get_response(URI.parse url).body
+      response = Net::HTTP::get_response(URI.parse url)
+      if response.code == "301"
+        response = Net::HTTP.get_response(URI.parse(response.header['location']))
+      end
+      response.body
     end
 
     def to_s
@@ -25,6 +29,6 @@ module BBC
 end
 
 if $0 == __FILE__
-  puts BBC::FetchHtml.new('5live', '2017-03-31')
+  puts BBC::FetchHtml.new('5live', '2017-10-25')
 end
 

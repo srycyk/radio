@@ -8,7 +8,6 @@ export default class ShowFetch {
     this.action = action
   }
 
-  
   get(params={}) {
     let path = `/shows/${this.action}`
 

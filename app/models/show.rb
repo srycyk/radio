@@ -4,7 +4,8 @@ class Show < ApplicationRecord
                     'radio4' => 'Radio 4',
                     'radio4extra' => '4 Extra',
                     '5live' => '5 Live',
-                    'worldserviceradio' => 'World Service' }
+                    'worldserviceradio' => 'World Service',
+                    '6music' => 'Radio 6' }
 
   STATIONS = STATION_NAMES.keys
 

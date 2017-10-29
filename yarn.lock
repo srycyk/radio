@@ -582,7 +582,7 @@ babel-plugin-transform-strict-mode@^6.22.0:
     babel-runtime "^6.22.0"
     babel-types "^6.22.0"
 
-babel-preset-env@^1.2.2:
+babel-preset-env@^1.3.2:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/babel-preset-env/-/babel-preset-env-1.3.2.tgz#08eabd2bf810c3678069f7e052323419f1448749"
   dependencies:
@@ -1769,7 +1769,7 @@ isobject@^2.0.0:
   dependencies:
     isarray "1.0.0"
 
-isomorphic-fetch@^2.1.1:
+isomorphic-fetch@^2.1.0, isomorphic-fetch@^2.1.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/isomorphic-fetch/-/isomorphic-fetch-2.2.1.tgz#611ae1acf14f5e81f729507472819fe9733558a9"
   dependencies:
@@ -1880,7 +1880,7 @@ loader-utils@^0.2.16:
     json5 "^0.5.0"
     object-assign "^4.0.1"
 
-loader-utils@^1.0.2:
+loader-utils@^1.0.2, loader-utils@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-1.1.0.tgz#c98aef488bcceda2ffb5e2de646d6a754429f5cd"
   dependencies:
@@ -2342,11 +2342,11 @@ querystringify@0.0.x:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-0.0.4.tgz#0cf7f84f9463ff0ae51c4c4b142d95be37724d9c"
 
-rails-erb-loader@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/rails-erb-loader/-/rails-erb-loader-3.2.0.tgz#b3972cffaedc04ae06e989b5a1b1d3223feca023"
+rails-erb-loader@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/rails-erb-loader/-/rails-erb-loader-4.0.0.tgz#761b3690da73a4761aad0a271d2033d8630020f2"
   dependencies:
-    loader-utils "^0.2.16"
+    loader-utils "^1.1.0"
     lodash.defaults "^4.2.0"
 
 randomatic@^1.1.3:
@@ -2380,6 +2380,12 @@ react-dom@^15.4.2:
     fbjs "^0.8.1"
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
+
+react-fetch@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/react-fetch/-/react-fetch-0.0.9.tgz#d48ee0474386ed162b3b1c24ea7382a5c871863e"
+  dependencies:
+    isomorphic-fetch "^2.1.0"
 
 react@^15.4.2:
   version "15.4.2"
@@ -3004,7 +3010,7 @@ webpack-sources@^0.2.3:
     source-list-map "^1.1.1"
     source-map "~0.5.3"
 
-webpack@^2.2.1:
+webpack@^2.3.3:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-2.3.3.tgz#eecc083c18fb7bf958ea4f40b57a6640c5a0cc78"
   dependencies:

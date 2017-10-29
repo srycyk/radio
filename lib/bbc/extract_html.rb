@@ -47,7 +47,7 @@ module BBC
       end
 
       if name == 'div' and atts['typeof'] == 'RadioEpisode'
-        @info_url = atts['resource']
+        @info_url = "http://bbc.co.uk/#{atts['resource']}"
       end
 
       if name == 'span' and atts['property'] == 'name'
