@@ -66,6 +66,8 @@ module BBC
       @zone ||= (Time.zone = 'London')
 
       Time.zone.parse time_string
+    rescue
+      Time.parse time_string
     end
   end
 end

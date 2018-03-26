@@ -1,7 +1,7 @@
 
 require 'date'
 
-#require 'bbc/struct_utils'
+require 'bbc'
 
 module BBC
   class Show < Struct.new(:station, :on_on, :starts,
