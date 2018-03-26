@@ -45,12 +45,23 @@ module BBC
       end
 
       def extractor(station, date, fetch_class: BBC::FetchHtml,
-                                   extract_class: BBC::ExtractHtml)
+                                   extract_class: BBC::ExtractJson)
+                                   #extract_class: BBC::ExtractHtml)
         date = date.to_s
 
         data = fetch_class.new(station, date).()
 
         extract_class.new(data).().map {|details| new station, date, *details }
+      end
+
+      def json_extractor(station, date, fetch_class: BBC::FetchHtml)
+        extractor station, date, fetch_class: fetch_class,
+                                 extract_class: BBC::ExtractJson
+      end
+
+      def html_extractor(station, date)
+        extractor station, date, fetch_class: BBC::FetchHtml,
+                                 extract_class: BBC::ExtractHtml
       end
 
       def lynx_extractor(station, date)

@@ -115,8 +115,8 @@ end
 
 
   if $0 == __FILE__
-    parser = BBC::ExtractHtml.new IO.read 'in/radio4extra/2017-03-28.html'
-    parser = BBC::ExtractHtml.new IO.read '2017-03-28.html'
+    #parser = BBC::ExtractHtml.new IO.read 'tmp/in/radio4extra/2018-03-24.html'
+    parser = BBC::ExtractHtml.new IO.read 'tmp/in/5live/2018-03-23.html'
 
     parser.call
 

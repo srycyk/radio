@@ -1,5 +1,6 @@
 
 require 'bbc/address'
+require 'bbc/extract_json'
 require 'bbc/extract_html'
 require 'bbc/extract_lynx'
 require 'bbc/fetch'
