@@ -1,20 +1,23 @@
 
-This is an experimental app that shows the timings of some of
-the BBC's radio programmes.
+This is a personal-use web application that shows the timings
+of some of the BBC's radio programmes.
 
-I was originally going to use it to get to know ActionCable,
-but it turned out that React was a better fit for the
-functionality, so I changed tack and used it to practise
-React with instead.
+It's more convenient to use than the BBC site, because,
+on this site, everything's on a single page and
+the current programmes are shown at the top.
 
-It it in Rails 5.1, and uses Webpack to serve up the JS.
-Rails (with SQLite) supplies the JSON data, React handles
-the front-end and caches the programme listings.
+It it in Rails 5.1, and uses Webpack to process the JS.
 
-The data extraction is in Ruby, and starts with the
-module, *lib/bbc.rb*.
+The back-end is in Rails.
+It supplies the programme listings as JSON, which are stored in SQL.
 
-I coded it up as I went along, hence it's a bit untidy and
-there're no tests. Also, it contains redundant code,
-just in case I do add some ActionCable stuff.
+The front-end is in React.
+Each show billing has a link to a page on the BBC site that gives
+detailed programme information.
+
+The data extraction (which scrapes the BBC site) is in Ruby,
+and starts with the module, *lib/bbc.rb*.
+
+I coded it up as I went along, hence it's a bit untidy,
+and there're no tests.
 
