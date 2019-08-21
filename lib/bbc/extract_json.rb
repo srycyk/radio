@@ -13,7 +13,7 @@ module BBC
     end
 
     def call
-      json_text = html.match(JSON_RE)[1].strip
+      json_text = html.scan(JSON_RE)[1].first.strip
 
       json = JSON.parse json_text
 
