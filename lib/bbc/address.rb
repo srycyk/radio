@@ -23,7 +23,7 @@ module BBC
     def token(station)
       case station
       when 'radio3'
-        'p00fzl86'
+        'p00fzl8t'
       when 'radio4'
         'p00fzl7j'
       when '5live'
